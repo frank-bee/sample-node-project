@@ -17,6 +17,19 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/github",
       [
+        "@eclass/semantic-release-ecs-deploy",
+        {
+          "services": [
+            {
+              "cluster": "pinsl-dev",
+              "service": "pinsl-dev-backend",
+              "timeout": -1,
+              "ignoreWarnings": true
+            }
+          ]
+        }
+      ],
+      [
         "@eclass/semantic-release-docker",
         {
           "baseImageName": "myapp",
