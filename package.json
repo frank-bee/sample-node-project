@@ -9,11 +9,37 @@
   "author": "Adem Cemil YALCIN",
   "license": "ISC",
   "release": {
-    "branches": ["master"],
+    "branches": [
+      "master"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/github"
+      "@semantic-release/github",
+      [
+        "@eclass/semantic-release-docker",
+        {
+          "baseImageName": "myapp",
+          "registries": [
+            {
+              "url": "123456789012.dkr.ecr.us-east-1.amazonaws.com",
+              "imageName": "123456789012.dkr.ecr.us-east-1.amazonaws.com/myapp",
+              "user": "AWS_DOCKER_USER",
+              "password": "AWS_DOCKER_PASSWORD",
+              "skipTags": [
+                "latest"
+              ]
+            }
+          ],
+          "additionalTags": [
+            "next",
+            "beta"
+          ]
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "@eclass/semantic-release-docker": "^3.0.0"
   }
 }
